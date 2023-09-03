@@ -4,7 +4,7 @@ var router = express.Router();
 router.route('/notificar')
     .get(function (req, res) {
         res.json({
-            message: "testando essa rota"
+            message: process.env.NOTIFICATION_TEST_MESSAGE
         });
     });
 
