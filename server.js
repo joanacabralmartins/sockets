@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080; // Define a porta padrão como 8080 caso não seja fornecida via variável de ambiente
-var router = express.Router(); // Criação do roteador
+var router = require('./routes');
 
 // Middleware para emitir notificações via Socket.io
 var emitir = function (req, res, next) {
@@ -29,15 +29,6 @@ var emitir = function (req, res, next) {
 
 app.use(emitir); // Utiliza o middleware de emissão de notificações
 app.use('/api', router); // Define a rota base '/api' para o roteador
-
-// Rota para receber notificações
-router.route('/notificar')
-    .get(function (req, res) {
-        // Responde com uma mensagem JSON
-        res.json({
-            message: "testando essa rota"
-        });
-    });
 
 // Inicia o servidor na porta definida
 app.listen(port);
